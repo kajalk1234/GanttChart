@@ -28,7 +28,7 @@ module powerbi.extensibility.visual {
     import DataViewObjects = powerbi.extensibility.utils.dataview.DataViewObjects;
     import ColorHelper = powerbi.extensibility.utils.color.ColorHelper;
     import LegendPosition = powerbi.extensibility.utils.chart.legend.LegendPosition;
-    import SelectionDataPoint = powerbi.extensibility.utils.interactivity.SelectableDataPoint;
+    import SelectableDataPoint = powerbi.extensibility.utils.interactivity.SelectableDataPoint;
     import IValueFormatter = powerbi.extensibility.utils.formatting.IValueFormatter;
     import ISelectionId = powerbi.visuals.ISelectionId;
     import TextProperties = powerbi.extensibility.utils.formatting.TextProperties;
@@ -113,7 +113,7 @@ module powerbi.extensibility.visual {
 
     }
 
-    export interface ITask extends SelectionDataPoint {
+    export interface ITask extends SelectableDataPoint {
         id: number;
         repeat: number;
         name: string[];
@@ -232,9 +232,9 @@ module powerbi.extensibility.visual {
 
     export interface IGanttBehaviorOptions extends IBehaviorOptions<BaseDataPoint> {
     behavior: IInteractiveBehavior;
-    taskSelection: Selection<SelectionDataPoint>;
-    legendSelection: Selection<SelectionDataPoint>;
-    interactivityService: IInteractivityService<SelectionDataPoint>;
+    taskSelection: Selection<SelectableDataPoint>;
+    legendSelection: Selection<SelectableDataPoint>;
+    interactivityService: IInteractivityService<SelectableDataPoint>;
 }
 
     export interface IGanttSettings {
@@ -264,24 +264,22 @@ module powerbi.extensibility.visual {
     /**
      * PersistExpandCollapseSettings
      */
-    // tslint:disable-next-line:max-classes-per-file
     export class PersistExpandCollapseSettings {
         public expandCollapseState: string = "{}";
     }
-    // tslint:disable-next-line:max-classes-per-file
     /**
      * GanttSettings
      */
-    // tslint:disable-next-line: max-classes-per-file
+       
     export class GanttSettings {
-        // tslint:disable-next-line:typedef
+           
         public static get Default() {
 
             return new this();
         }
 
-        public static parse(objects: DataViewObjects, colors: IColorPalette): IGanttSettings {
-            // tslint:disable-next-line:typedef
+        public static PARSE(objects: DataViewObjects, colors: IColorPalette): IGanttSettings {
+               
             const properties = ganttProperties;
 
             return {
@@ -390,7 +388,7 @@ module powerbi.extensibility.visual {
             sortOrder: "asc"
         };
         private static parseCategoryColumnsWidthSettings(objects: DataViewObjects): ICategoryColumnsWidthSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.categoryColumnsWidth;
             const defaultSettings: ICategoryColumnsWidthSettings = this.categoryColumnsWidth;
 
@@ -403,7 +401,7 @@ module powerbi.extensibility.visual {
 
         }
         private static parsesortAttributesSettings(objects: DataViewObjects): ISortAttributesSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.sortAttributes;
             const defaultSettings: ISortAttributesSettings = this.sortAttributes;
 
@@ -419,7 +417,7 @@ module powerbi.extensibility.visual {
         }
 
         private static parseDisplayRatioSettings(objects: DataViewObjects): IDisplayRatioSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.displayRatio;
             const defaultSettings: IDisplayRatioSettings = this.displayRatio;
 
@@ -430,7 +428,7 @@ module powerbi.extensibility.visual {
         }
 
         private static parseGeneralSettings(objects: DataViewObjects): IGeneralSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.general;
             const defaultSettings: IGeneralSettings = this.general;
 
@@ -441,7 +439,7 @@ module powerbi.extensibility.visual {
         }
 
         private static parseBarColorSettings(objects: DataViewObjects, colors: IColorPalette): IBarColor {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.barColor;
             const defaultSettings: IBarColor = this.barColor;
 
@@ -453,7 +451,7 @@ module powerbi.extensibility.visual {
         }
 
         private static parseLegendSettings(objects: DataViewObjects, colors: IColorPalette): ILegendSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.legend;
             const defaultSettings: ILegendSettings = this.legend;
 
@@ -469,7 +467,7 @@ module powerbi.extensibility.visual {
         }
 
         private static parseTaskLabelsSettings(objects: DataViewObjects, colors: IColorPalette): ITaskLabelsSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.taskLabels;
             const defaultSettings: ITaskLabelsSettings = this.taskLabels;
 
@@ -488,7 +486,7 @@ module powerbi.extensibility.visual {
         }
         private static parseColumnHeaderSettings(objects: DataViewObjects,
                                                  colors: IColorPalette): IColumnHeaderSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.columnHeader;
             const defaultSettings: IColumnHeaderSettings = this.columnHeader;
 
@@ -506,7 +504,7 @@ module powerbi.extensibility.visual {
 
         private static parseTaskResourceSettings(objects: DataViewObjects,
                                                  colors: IColorPalette): ITaskResourceSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.taskResource;
             const defaultSettings: ITaskResourceSettings = this.taskResource;
 
@@ -523,7 +521,7 @@ module powerbi.extensibility.visual {
 
         private static parseTaskGridLinesSettings(objects: DataViewObjects,
                                                   colors: IColorPalette): ITaskGridLinesSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.taskGridlines;
             const defaultSettings: ITaskGridLinesSettings = this.taskGridLines;
 
@@ -535,7 +533,7 @@ module powerbi.extensibility.visual {
         }
 
         private static parseDateTypeSettings(objects: DataViewObjects): IDateTypeSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.dateType;
             const defaultSettings: IDateTypeSettings = this.dateType;
 
@@ -547,7 +545,7 @@ module powerbi.extensibility.visual {
         }
 
         private static parseDataTypeSettings(objects: DataViewObjects): IDataTypeSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.datatype;
             const defaultSettings: IDataTypeSettings = this.datatype;
 
@@ -557,7 +555,7 @@ module powerbi.extensibility.visual {
         }
 
         private static parseScrollPositionSettings(objects: DataViewObjects): IScrollPositionSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.scrollPosition;
             const defaultSettings: IScrollPositionSettings = this.scrollPosition;
 
@@ -570,7 +568,7 @@ module powerbi.extensibility.visual {
         }
 
         private static parseKPIColumnTypeSettings(objects: DataViewObjects): IKPIColumnTypeSettings {
-            // tslint:disable-next-line:typedef
+               
             const properties = ganttProperties.kpiColumnType;
             const defaultSettings: IKPIColumnTypeSettings = this.kpiColumnType;
 
@@ -582,7 +580,6 @@ module powerbi.extensibility.visual {
             };
         }
 
-        // tslint:disable-next-line:no-any
         private static getColor(objects: DataViewObjects,
                                 properties: any, defaultColor: string, colors: IColorPalette): string {
             let colorHelper: ColorHelper;

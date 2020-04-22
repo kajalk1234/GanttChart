@@ -32,29 +32,29 @@ module powerbi.extensibility.visual {
      * export class GanttColumns
      */
     export class GanttColumns<T> {
-        public static getColumnSources(dataView: DataView): GanttColumns<DataViewMetadataColumn> {
+        public static GETCOLUMNSOURCES(dataView: DataView): GanttColumns<DataViewMetadataColumn> {
             return this.getColumnSourcesT<DataViewMetadataColumn>(dataView);
         }
 
-        public static getCategoricalColumns(dataView: DataView): GanttColumns<GanttCategoricalColumns> {
+        public static GETCATEGORICALCOLUMNS(dataView: DataView): GanttColumns<GanttCategoricalColumns> {
             let categorical: DataViewCategorical;
             categorical = dataView && dataView.categorical;
             let categories: DataViewCategoricalColumn[];
             categories = categorical && categorical.categories || [];
             let values: DataViewValueColumns;
-            values = categorical && categorical.values || [] as DataViewValueColumns;
+            values = categorical && categorical.values || <DataViewValueColumns>[];
 
             return categorical && _.mapValues(
                 new this<GanttCategoricalColumns>(),
-                // tslint:disable-next-line:typedef
+                   
                 (n, i) => {
-                    // tslint:disable-next-line:no-any typedef
+                       
                     let result: any = categories.filter((x) => x.source.roles && x.source.roles[i])[0];
                     if (!result) {
                         result = values.source && values.source.roles && values.source.roles[i] && values;
                     }
                     if (!result) {
-                        // tslint:disable-next-line:typedef
+                           
                         result = values.filter((x) => x.source.roles && x.source.roles[i]);
                         if (_.isEmpty(result)) {
                             result = undefined;
@@ -69,7 +69,7 @@ module powerbi.extensibility.visual {
             let columns: DataViewMetadataColumn[];
             columns = dataView && dataView.metadata && dataView.metadata.columns;
             return columns && _.mapValues(
-                // tslint:disable-next-line:typedef
+                   
                 new this<T>(), (n, i) => columns.filter((x) => x.roles && x.roles[i])[0]);
         }
 
