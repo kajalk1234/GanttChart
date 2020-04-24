@@ -43,28 +43,6 @@
 
  .gantt {
      position: absolute;
- 
-     .gantt_axis {
-         path {
-             fill: none;
-         }
- 
-         path, line {
-             stroke: #000;
-             stroke-width: 1;
-         }
- 
-         font-size: 10px;
-     }
- 
-     .gantt_tasks {
-         .gantt_task {
-             .gantt_task-resource {
-                 font-size: medium;
-                 font-weight: bold;
-             }
-         }
-     }
  }
  
  .gantt_chart-line {
@@ -155,11 +133,6 @@
  
  .gantt_grids {
      fill: transparent;
- 
-     line {
-         stroke-width: 1px;
-         border-style: solid;
-     }
  }
  
  .gantt_task-progress {
@@ -335,9 +308,15 @@
 
 .dataLabelDiv {
     height: 20px;
-    white-space: 'nowrap';
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: 'ellipsis';
-    vertical-align: 'middle';
+    vertical-align: middle;
     line-height: 20px;
+}
+
+.show {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

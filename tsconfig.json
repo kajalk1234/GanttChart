@@ -21,7 +21,7 @@
     "node_modules/powerbi-visuals-utils-tooltiputils/lib/index.d.ts",
     "node_modules/powerbi-visuals-utils-colorutils/lib/index.d.ts",
     "node_modules/powerbi-visuals-utils-chartutils/lib/index.d.ts",
-    "src/properties.ts",
+    "src/ganttProperties.ts",
     "src/behavior.ts",
     "src/columns.ts",
     "src/settings.ts",

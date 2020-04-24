@@ -26,11 +26,11 @@
 
 module powerbi.extensibility.visual {
     import Selection = d3.Selection;
-    import SelectionDataPoint = powerbi.extensibility.utils.interactivity.SelectableDataPoint;
+    import SelectableDataPoint = powerbi.extensibility.utils.interactivity.SelectableDataPoint;
     import IInteractiveBehavior = powerbi.extensibility.utils.interactivity.IInteractiveBehavior;
     import ISelectionHandler = powerbi.extensibility.utils.interactivity.ISelectionHandler;
 
-    export class GanttChartBehavior implements IInteractiveBehavior {
+    export class behavior implements IInteractiveBehavior {
 
      private options: IGanttBehaviorOptions;
         private selectionHandler: ISelectionHandler;
@@ -38,18 +38,18 @@ module powerbi.extensibility.visual {
         public bindEvents(options: IGanttBehaviorOptions, selectionHandler: ISelectionHandler): void {
             this.options = options;
             this.selectionHandler = selectionHandler;
-            options.taskSelection.on("click", (d: SelectionDataPoint) => {
-                selectionHandler.handleSelection(d, (d3.event as MouseEvent).ctrlKey);
-                (d3.event as MouseEvent).stopPropagation();
+            options.taskSelection.on("click", (d: SelectableDataPoint) => {
+                selectionHandler.handleSelection(d, (<MouseEvent>d3.event).ctrlKey);
+                (<Event>d3.event).stopPropagation();
             });
         }
 
         public renderSelection(hasSelection: boolean): void {
-            this.options.taskSelection.style("opacity", (d: SelectionDataPoint) => {
+            this.options.taskSelection.style("opacity", (d: SelectableDataPoint) => {
                 return (hasSelection && !d.selected) ?
                 Gantt.defaultValues.MinTaskOpacity : Gantt.defaultValues.MaxTaskOpacity;
             });
-            this.options.legendSelection.style("opacity", (d: SelectionDataPoint) => {
+            this.options.legendSelection.style("opacity", (d: SelectableDataPoint) => {
                 return (hasSelection && !d.selected) ?
                 Gantt.defaultValues.MinTaskOpacity : Gantt.defaultValues.MaxTaskOpacity;
             });
